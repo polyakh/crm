@@ -1,0 +1,23 @@
+model Lead {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  company   String?  @db.VarChar(255)
+  email     String?  @db.VarChar(255)
+  phone     String?  @db.VarChar(15)
+  notes     String?  @db.Text
+  userId    Int
+  statusId  Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status Status @relation(fields: [statusId], references: [id])
+  deals  Deal[]
+
+  @@index([userId])
+  @@index([statusId])
+  @@index([email])
+  @@index([company])
+  @@index([createdAt])
+  @@index([name])
+}

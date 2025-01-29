@@ -1,0 +1,18 @@
+model Status {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique @db.VarChar(50)
+  sortOrder Int        @default(0)
+  type      StatusType
+  createdAt DateTime   @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt DateTime   @updatedAt @map("updated_at") @db.Timestamp()
+  leads     Lead[]
+  deals     Deal[]
+
+  @@index([type, sortOrder])
+  @@index([name])
+}
+
+enum StatusType {
+  LEAD
+  DEAL
+}

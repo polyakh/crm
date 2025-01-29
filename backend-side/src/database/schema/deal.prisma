@@ -1,0 +1,21 @@
+model Deal {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  amount    Decimal  @db.Decimal(10, 2)
+  notes     String?  @db.Text
+  userId    Int
+  leadId    Int
+  statusId  Int      @default(1) // Default to first status
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  status Status @relation(fields: [statusId], references: [id])
+
+  @@index([userId])
+  @@index([leadId])
+  @@index([statusId])
+  @@index([createdAt])
+  @@index([amount])
+}

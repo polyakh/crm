@@ -1,0 +1,1 @@
+- [x] Create a Shareable ESLint Configuration on npm

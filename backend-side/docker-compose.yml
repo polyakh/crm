@@ -1,0 +1,8 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: crm-postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
