@@ -25,6 +25,10 @@
     "paths": {
       "~features/*": ["src/features/*"],
       "~core/*": ["src/core/*"],
+      "~clients/*": ["src/clients/*"],
+      "~modules/*": ["src/modules/*"],
+      "~use-cases/*": ["src/use-cases/*"],
+      "app/*": ["src/app/*"],
     }
   },
   "include": ["vite.config.ts"]

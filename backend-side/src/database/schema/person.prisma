@@ -1,0 +1,18 @@
+model Person {
+  id               Int       @id @default(autoincrement())
+  ccEmail          String
+  activeFlag       Boolean
+  name             String
+  labelIds         Int[]
+  orgId            Int
+  closedDealsCount Int
+  openDealsCount   Int
+  nextActivityDate DateTime?
+  ownerId          Int
+  primaryEmail     String
+  nextActivityTime DateTime?
+
+  // Storing emails and phones as JSON for simplicity in an MVP
+  emails Json
+  phones Json
+}

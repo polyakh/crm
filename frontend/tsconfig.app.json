@@ -21,11 +21,16 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
       "~features/*": ["src/features/*"],
       "~core/*": ["src/core/*"],
+      "~clients/*": ["src/clients/*"],
+      "~modules/*": ["src/modules/*"],
+      "~use-cases/*": ["src/use-cases/*"],
+      "app/*": ["src/app/*"],
     }
 
   },
