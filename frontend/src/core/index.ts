@@ -1,2 +1,2 @@
 export { DefaultHttpClient } from "./http";
-export { WinstonLogger } from "./logging";
+export { PinoLogger } from "./logging";

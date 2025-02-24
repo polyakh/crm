@@ -2,5 +2,14 @@ import { MantineThemeOverride } from "@mantine/core";
 
 export const darkTheme: MantineThemeOverride = {
   fontFamily: "Arial, sans-serif",
-  primaryColor: "yellow",
+  components: {
+    TextInput: {
+      styles: {
+        label: {
+          fontWeight: 700,
+        },
+      },
+    },
+  },
+  // primaryColor: "yellow",
 };

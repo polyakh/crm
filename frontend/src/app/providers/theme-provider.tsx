@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { lightTheme, darkTheme } from '../../styles/theme'
 
 
-
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setTheme] = useState<MantineThemeOverride>(darkTheme);
 
     const toggleTheme = () => {
@@ -15,9 +14,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <MantineProvider
+            globalStyles={(theme) => ({
+                '.mantine-InputWrapper-label': {
+                    fontWeight: 700,
+                },
+            })}
             theme={theme}
         >
             {children}
         </MantineProvider>
     );
 }
+
+export default ThemeProvider

@@ -4,7 +4,7 @@ export type ApiConfig = {
   readonly ENV: string;
   readonly API_VERSION: "v1" | "v2";
   readonly DEFAULT_HEADERS: {
-    readonly Authorization: string;
+    readonly Authorization?: string;
   };
 };
 
@@ -13,7 +13,5 @@ export const API_CONFIG: ApiConfig = {
   TIMEOUT: Number(import.meta.env.VITE_API_TIMEOUT) || 5000,
   API_VERSION: import.meta.env.VITE_API_VERSION || "v1",
   ENV: import.meta.env.VITE_ENV || "development",
-  DEFAULT_HEADERS: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
+  DEFAULT_HEADERS: {},
 };

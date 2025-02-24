@@ -1,19 +1,26 @@
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255)
-  email     String   @unique @db.VarChar(255)
-  password  String
-  role      UserRole @default(AGENT)
-  createdAt DateTime @default(now()) @db.Timestamp()
-  updatedAt DateTime @updatedAt @db.Timestamp()
+  id       Int    @id @default(autoincrement())
+  googleId String @unique
+
+  name      String?   @db.VarChar(55)
+  email     String?   @unique @db.VarChar(55)
+  password  String?
+  role      UserRole? @default(AGENT)
+  createdAt DateTime? @default(now()) @db.Timestamp()
+  updatedAt DateTime? @updatedAt @db.Timestamp()
+  language  Language? @default(EN)
   leads     Lead[]
   deals     Deal[]
 
   @@index([email])
-  @@index([role])
 }
 
 enum UserRole {
   ADMIN
   AGENT
+}
+
+enum Language {
+  EN
+  UK
 }

@@ -30,7 +30,8 @@
       "~clients/*": ["src/clients/*"],
       "~modules/*": ["src/modules/*"],
       "~use-cases/*": ["src/use-cases/*"],
-      "app/*": ["src/app/*"],
+      "~app/*": ["src/app/*"],
+      "~shared/*": ["src/shared/*"],
     }
 
   },

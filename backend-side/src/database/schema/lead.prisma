@@ -1,23 +1,65 @@
-model Lead {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255)
-  company   String?  @db.VarChar(255)
-  email     String?  @db.VarChar(255)
-  phone     String?  @db.VarChar(15)
-  notes     String?  @db.Text
-  userId    Int
-  statusId  Int      @default(1)
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  status Status @relation(fields: [statusId], references: [id])
-  deals  Deal[]
-
-  @@index([userId])
-  @@index([statusId])
-  @@index([email])
-  @@index([company])
-  @@index([createdAt])
-  @@index([name])
+enum LeadLabel {
+  HOT
+  WARM
+  COLD
 }
+
+enum LeadSource {
+  REFERRAL
+  WEBSITE
+  ADVERTISEMENT
+  OTHER
+}
+
+model Lead {
+  id Int @id @default(autoincrement())
+
+  // --- MVP Fields ---
+  name              String?   @db.VarChar(255)
+  orgName           String?   @db.VarChar(255)
+  ownerId           Int? // Owner's unique identifier (e.g., user ID)
+  ownerName         String?   @db.VarChar(255) // Owner's display name
+  phone             String?   @db.VarChar(15) // Primary phone number (max 15 characters)
+  email             String?   @db.VarChar(255) // Primary email address (max 255 characters)
+  expectedCloseDate DateTime? @db.Timestamptz() // Optional: Expected close date for the lead
+
+  leadSource LeadSource? // Optional: Source of the lead (e.g., REFERRAL, WEBSITE)
+  leadLabel  LeadLabel? // Optional: Lead priority/status (e.g., HOT, WARM, COLD)
+
+  // --- First Iteration / Future Enhancements ---
+  // orgId           Int?       // Optional: Organization's unique identifier for relational mapping
+
+  // --- Timestamps ---
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz() // Record creation timestamp
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz() // Record update timestamp
+
+  Status   Status? @relation(fields: [statusId], references: [id])
+  statusId Int?
+  Deal     Deal[]
+  User     User?   @relation(fields: [userId], references: [id])
+  userId   Int?
+}
+
+// model Lead {
+//   id        Int      @id @default(autoincrement())
+//   name      String   @db.VarChar(255)
+//   company   String?  @db.VarChar(255)
+//   email     String?  @db.VarChar(255)
+//   phone     String?  @db.VarChar(15)
+//   notes     String?  @db.Text
+//   userId    Int
+//   statusId  Int      @default(1)
+//   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
+//   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
+//
+//   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   status Status @relation(fields: [statusId], references: [id])
+//   deals  Deal[]
+//
+//   @@index([userId])
+//   @@index([statusId])
+//   @@index([email])
+//   @@index([company])
+//   @@index([createdAt])
+//   @@index([name])
+// }

@@ -44,6 +44,7 @@ export class DefaultHttpClient implements HttpClient {
     const fetchOptions: RequestInit = {
       method: HttpMethod.POST,
       headers: {
+        "Content-Type": "application/json",
         ...this.apiConfig.DEFAULT_HEADERS,
         ...options?.headers,
       },
