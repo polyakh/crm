@@ -1,18 +1,19 @@
 model User {
   id       Int    @id @default(autoincrement())
   googleId String @unique
-
   name      String?   @db.VarChar(55)
   email     String?   @unique @db.VarChar(55)
-  password  String?
-  role      UserRole? @default(AGENT)
   createdAt DateTime? @default(now()) @db.Timestamp()
   updatedAt DateTime? @updatedAt @db.Timestamp()
-  language  Language? @default(EN)
-  leads     Lead[]
-  deals     Deal[]
+  photoUrl String?
 
-  @@index([email])
+
+  // role      UserRole? @default(AGENT) 
+  // language  Language? @default(EN)
+  // leads     Lead[]
+  // deals     Deal[]
+
+  // @@index([email])
 }
 
 enum UserRole {

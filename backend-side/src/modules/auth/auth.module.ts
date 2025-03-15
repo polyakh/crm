@@ -6,7 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports: [
-        // TypeOrmModule.forFeature([User]),
         JwtModule.registerAsync(jwtConfig.asProvider()),
         ConfigModule.forFeature(jwtConfig),
         ConfigModule.forFeature(googleOauthConfig),

@@ -7,14 +7,17 @@ async function main() {
     {
       name: "Alice Johnson",
       email: "alice.johnson@example.com",
+      googleId: 'googleId-1'
     },
     {
       name: "Bob Smith",
       email: "bob.smith@example.com",
+      googleId: 'googleId-2'
     },
     {
       name: "Charlie Brown",
       email: "charlie.brown@example.com",
+      googleId: 'googleId-3'
     },
   ];
 
@@ -25,8 +28,8 @@ async function main() {
       create: {
         name: user.name,
         email: user.email,
-        password: "password",
-        role: "AGENT",
+        googleId: user.email
+        // role: "AGENT",
       },
     });
   }

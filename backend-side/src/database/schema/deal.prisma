@@ -9,7 +9,7 @@ model Deal {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
   status Status @relation(fields: [statusId], references: [id])
 
